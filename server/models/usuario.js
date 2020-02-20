@@ -39,6 +39,16 @@ let usuarioSchema = new Schema({
     default: false
   }
 })
+/**
+ * Para modificar el esquema y quitar el password
+ */
+usuarioSchema.methods.toJSON = function() {
+  let user = this
+  let userObject = user.toObject()
+  delete userObject.password
+
+  return userObject
+}
 
 usuarioSchema.plugin(uniqueValidator, { message: "{PATH} debe de ser único" })
 
