@@ -18,8 +18,8 @@ app.use(bodyParser.json())
 app.use(require("./routes/usuario"))
 
 mongoose.connect(
-  "mongodb://localhost:27017/cafe",
-  { useUnifiedTopology: true, useNewUrlParser: true },
+  process.env.URLDB,
+  { useUnifiedTopology: true, useNewUrlParser: true, useCreateIndex: true },
   (err, res) => {
     if (err) throw err
 
