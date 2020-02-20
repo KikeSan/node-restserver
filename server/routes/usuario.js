@@ -1,11 +1,31 @@
 const express = require("express")
 const Usuario = require("../models/usuario")
 const bcrypt = require("bcrypt")
+const _ = require("underscore")
 
 const app = express()
 
 app.get("/usuario", function(req, res) {
-  res.json("get usuario local!")
+  let desde = Number(req.query.desde) || 0
+  let limite = Number(req.query.limite) || 5
+  //desde = Number(desde)
+
+  Usuario.find({})
+    .skip(desde)
+    .limit(limite)
+    .exec((err, usuarios) => {
+      if (err) {
+        return res.status(400).json({
+          ok: false,
+          err
+        })
+      }
+
+      res.json({
+        ok: true,
+        usuarios
+      })
+    })
 })
 
 app.post("/usuario", function(req, res) {
@@ -48,19 +68,33 @@ app.post("/usuario", function(req, res) {
 
 app.put("/usuario/:id", function(req, res) {
   let id = req.params.id
+  /**
+   * Aquí voy a filtrar solo los campos que quiero actualizar
+   * ["nombre", "email", "img", "role", "estado"]
+   */
+  let body = _.pick(req.body, ["nombre", "email", "img", "role", "estado"])
 
-  let body = req.body
+  Usuario.findByIdAndUpdate(
+    id,
+    body,
+    {
+      new: true, //Me muestra la colección actual en mongodb
+      runValidators: true //corre las validaciones de nuestro Schema
+    },
+    (err, usuarioDB) => {
+      if (err) {
+        return res.status(400).json({
+          ok: false,
+          err
+        })
+      }
 
-  Usuario.findByIdAndUpdate(id, body, { new: true }, (err, usuarioDB) => {
-    if (err) {
-      return res.status(400).json({
-        ok: false,
-        err
+      res.json({
+        ok: true,
+        usuario: usuarioDB
       })
     }
-
-    res.json({ ok: true, usuario: usuarioDB })
-  })
+  )
 
   /*  */
 })
