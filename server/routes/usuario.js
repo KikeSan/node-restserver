@@ -11,9 +11,10 @@ app.get("/usuario", function(req, res) {
   //desde = Number(desde)
 
   /**
-   * El segundo parámetro indica que campos quiero mostrar
+   * @param objeto: se tiene que cumplir esta regla
+   * @param string: El segundo parámetro indica que campos quiero mostrar
    */
-  Usuario.find({}, "nombre email role estado google img")
+  Usuario.find({ estado: true }, "nombre email role estado google img")
     .skip(desde)
     .limit(limite)
     .exec((err, usuarios) => {
@@ -23,8 +24,10 @@ app.get("/usuario", function(req, res) {
           err
         })
       }
-
-      Usuario.count({}, (err, conteo) => {
+      /**
+       * Cuenta los usuarios, solo los que están con estado:true
+       */
+      Usuario.countDocuments({ estado: true }, (err, conteo) => {
         res.json({
           ok: true,
           cuantos: conteo,
@@ -59,17 +62,6 @@ app.post("/usuario", function(req, res) {
       usuario: usuarioDB
     })
   })
-
-  /* if (body.nombre === undefined) {
-    res.status(400).json({
-      ok: false,
-      mensaje: "El nombre es necesario"
-    })
-  } else {
-    res.json({
-      usuario: body
-    })
-  } */
 })
 
 app.put("/usuario/:id", function(req, res) {
@@ -101,14 +93,48 @@ app.put("/usuario/:id", function(req, res) {
       })
     }
   )
-
-  /*  */
 })
 
 app.delete("/usuario/:id", function(req, res) {
   let id = req.params.id
 
-  Usuario.findByIdAndRemove(id, (err, usuarioBorrado) => {
+  let cambiaEstado = {
+    estado: false
+  }
+
+  Usuario.findByIdAndUpdate(
+    id,
+    cambiaEstado,
+    {
+      new: true //Me muestra la colección actual en mongodb
+    },
+    (err, usuarioBorrado) => {
+      if (err) {
+        return res.status(400).json({
+          ok: false,
+          err
+        })
+      }
+
+      if (!usuarioBorrado) {
+        return res.status(400).json({
+          ok: false,
+          err: {
+            message: "Usuario no encontrado"
+          }
+        })
+      }
+
+      res.json({
+        ok: true,
+        usuario: usuarioBorrado
+      })
+    }
+  )
+  /**
+   * ELIMINACIÓN FÍSICA ---------
+   */
+  /* Usuario.findByIdAndRemove(id, (err, usuarioBorrado) => {
     if (err) {
       return res.status(400).json({
         ok: false,
@@ -129,7 +155,7 @@ app.delete("/usuario/:id", function(req, res) {
       ok: true,
       usuario: usuarioBorrado
     })
-  })
+  }) */
 })
 
 module.exports = app
