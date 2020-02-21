@@ -7,6 +7,12 @@ const { verificaToken } = require("../middlewares/autenticacion")
 const app = express()
 
 app.get("/usuario", verificaToken, (req, res) => {
+  return res.json({
+    usuario: req.usuario,
+    nombre: req.usuario.nombre,
+    email: req.usuario.email
+  })
+
   let desde = Number(req.query.desde) || 0
   let limite = Number(req.query.limite) || 5
   //desde = Number(desde)
@@ -38,7 +44,7 @@ app.get("/usuario", verificaToken, (req, res) => {
     })
 })
 
-app.post("/usuario", function(req, res) {
+app.post("/usuario", verificaToken, (req, res) => {
   let body = req.body
 
   let usuario = new Usuario({
@@ -65,7 +71,7 @@ app.post("/usuario", function(req, res) {
   })
 })
 
-app.put("/usuario/:id", function(req, res) {
+app.put("/usuario/:id", verificaToken, (req, res) => {
   let id = req.params.id
   /**
    * Aquí voy a filtrar solo los campos que quiero actualizar
@@ -96,7 +102,7 @@ app.put("/usuario/:id", function(req, res) {
   )
 })
 
-app.delete("/usuario/:id", function(req, res) {
+app.delete("/usuario/:id", verificaToken, (req, res) => {
   let id = req.params.id
 
   let cambiaEstado = {
