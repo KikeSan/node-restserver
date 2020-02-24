@@ -2,16 +2,19 @@ const express = require("express")
 const Usuario = require("../models/usuario")
 const bcrypt = require("bcrypt")
 const _ = require("underscore")
-const { verificaToken } = require("../middlewares/autenticacion")
+const {
+  verificaToken,
+  verificaAdmin_Role
+} = require("../middlewares/autenticacion")
 
 const app = express()
 
 app.get("/usuario", verificaToken, (req, res) => {
-  return res.json({
+  /* return res.json({
     usuario: req.usuario,
     nombre: req.usuario.nombre,
     email: req.usuario.email
-  })
+  }) */
 
   let desde = Number(req.query.desde) || 0
   let limite = Number(req.query.limite) || 5
@@ -44,7 +47,7 @@ app.get("/usuario", verificaToken, (req, res) => {
     })
 })
 
-app.post("/usuario", verificaToken, (req, res) => {
+app.post("/usuario", [verificaToken, verificaAdmin_Role], (req, res) => {
   let body = req.body
 
   let usuario = new Usuario({
@@ -71,7 +74,7 @@ app.post("/usuario", verificaToken, (req, res) => {
   })
 })
 
-app.put("/usuario/:id", verificaToken, (req, res) => {
+app.put("/usuario/:id", [verificaToken, verificaAdmin_Role], (req, res) => {
   let id = req.params.id
   /**
    * Aquí voy a filtrar solo los campos que quiero actualizar
@@ -102,7 +105,7 @@ app.put("/usuario/:id", verificaToken, (req, res) => {
   )
 })
 
-app.delete("/usuario/:id", verificaToken, (req, res) => {
+app.delete("/usuario/:id", [verificaToken, verificaAdmin_Role], (req, res) => {
   let id = req.params.id
 
   let cambiaEstado = {
