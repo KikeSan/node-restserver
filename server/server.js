@@ -8,7 +8,7 @@ const app = express()
 const bodyParser = require("body-parser")
 
 /**
- * APP.USE cada vez q hay esto es un middleware
+ * APP.USE cada vez q hay esta instrucción es un middleware
  */
 // parse application/x-www-form-urlencoded
 app.use(bodyParser.urlencoded({ extended: false }))
