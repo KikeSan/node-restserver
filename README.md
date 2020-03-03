@@ -8,3 +8,8 @@ Este es un restserver con los servicios CRUD básicos
 - Listar usuarios
 - Actualizar usuario
 - Eliminar usuario (cambiar estado a false)
+
+### Módulo Categoría
+
+- Crear categoría
+- Listar categoría
