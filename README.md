@@ -6,3 +6,4 @@ Este es un restserver con los servicios CRUD básicos
 
 - Crear usuario
 - Listar usuarios
+- Actualizar usuario
