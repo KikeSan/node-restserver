@@ -25,3 +25,6 @@ Integrado con Google Authorization
 - Verifica admin rol
 
 ### Models
+
+- Usuario model
+- Categoría model
