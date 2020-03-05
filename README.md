@@ -28,3 +28,5 @@ Integrado con Google Authorization
 
 - Usuario model
 - Categoría model
+
+### Config
