@@ -35,3 +35,5 @@ Integrado con Google Authorization
 - Environment
 - Token expiration
 - Authentication seed
+- Database
+- Google client ID
