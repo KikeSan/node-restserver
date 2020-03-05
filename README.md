@@ -18,3 +18,8 @@ Integrado con Google Authorization
 - Crear categoría
 - Listar categoría
 - Actualizar categoría
+
+### Middlewares
+
+- Verifica token
+- Verifica admin rol
