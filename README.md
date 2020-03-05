@@ -13,3 +13,4 @@ Este es un restserver con los servicios CRUD básicos
 
 - Crear categoría
 - Listar categoría
+- Actualizar categoría
