@@ -11,10 +11,12 @@ let Categoria = require("../models/categoria")
 
 /**
  * Mostrar todas las categorias
+ * @populate recibe 2 parámetros(nombre del esquema, campos que se quieren mostrar)
  */
 app.get("/categoria", verificaToken, (req, res) => {
   Categoria.find()
-    .populate("usuario")
+    .sort("descripcion")
+    .populate("usuario", "nombre email")
     .exec((err, categorias) => {
       if (err) {
         return res.status(400).json({
