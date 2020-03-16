@@ -5,7 +5,7 @@ var productoSchema = new Schema({
   nombre: { type: String, required: [true, "El nombre es necesario"] },
   precioUni: {
     type: Number,
-    required: [true, "El precio Ãºnitario es necesario"]
+    required: [true, "El precio sanitario es necesario"]
   },
   descripcion: { type: String, required: false },
   disponible: { type: Boolean, required: true, default: true },
