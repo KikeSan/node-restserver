@@ -18,11 +18,14 @@ Integrado con Google Authorization
 - Crear categoría
 - Listar categoría
 - Actualizar categoría
+- Eliminar categoría
 
 ### Módulo Producto
 
 - Crear Producto
 - Editar Producto
+- Listar Productos
+- Eliminar Producto
 
 ### Middlewares
 
@@ -33,6 +36,7 @@ Integrado con Google Authorization
 
 - Usuario model
 - Categoría model
+- Producto model
 
 ### Config
 
