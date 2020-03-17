@@ -19,6 +19,8 @@ Integrado con Google Authorization
 - Listar categoría
 - Actualizar categoría
 
+### Módulo Producto
+
 ### Middlewares
 
 - Verifica token
