@@ -21,6 +21,8 @@ Integrado con Google Authorization
 
 ### Módulo Producto
 
+- Crear Producto
+
 ### Middlewares
 
 - Verifica token
