@@ -22,6 +22,7 @@ Integrado con Google Authorization
 ### Módulo Producto
 
 - Crear Producto
+- Editar Producto
 
 ### Middlewares
 
