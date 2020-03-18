@@ -50,3 +50,4 @@ Integrado con Google Authorization
 ### Uploads
 
 - productos
+- usuarios
