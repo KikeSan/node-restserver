@@ -30,6 +30,7 @@ Integrado con Google Authorization
 ### Módulo Upload
 
 - imagenUsuario
+- imagenProducto
 
 ### Middlewares
 
