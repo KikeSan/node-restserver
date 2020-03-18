@@ -29,6 +29,8 @@ Integrado con Google Authorization
 
 ### Módulo Upload
 
+- imagenUsuario
+
 ### Middlewares
 
 - Verifica token
