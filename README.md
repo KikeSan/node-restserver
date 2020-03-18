@@ -48,3 +48,5 @@ Integrado con Google Authorization
 - Google client ID
 
 ### Uploads
+
+- productos
