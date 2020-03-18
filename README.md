@@ -31,6 +31,7 @@ Integrado con Google Authorization
 
 - imagenUsuario
 - imagenProducto
+- borrarArchivo
 
 ### Middlewares
 
