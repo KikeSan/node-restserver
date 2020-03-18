@@ -31,7 +31,7 @@ Integrado con Google Authorization
 
 - imagenUsuario()
 - imagenProducto()
-- borrarArchivo
+- borrarArchivo()
 
 ### Middlewares
 
