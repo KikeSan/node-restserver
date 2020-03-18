@@ -27,6 +27,8 @@ Integrado con Google Authorization
 - Listar Productos
 - Eliminar Producto
 
+### Módulo Upload
+
 ### Middlewares
 
 - Verifica token
