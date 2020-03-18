@@ -29,7 +29,7 @@ Integrado con Google Authorization
 
 ### Módulo Upload
 
-- imagenUsuario
+- imagenUsuario()
 - imagenProducto
 - borrarArchivo
 
