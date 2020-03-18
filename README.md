@@ -46,3 +46,5 @@ Integrado con Google Authorization
 - Authentication seed
 - Database
 - Google client ID
+
+### Uploads
